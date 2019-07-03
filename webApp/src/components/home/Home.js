@@ -3,7 +3,6 @@ import Container from '@material-ui/core/Container';
 import { withStyles } from '@material-ui/core/styles';
 
 import TemtemList from '../temtemList/TemtemList';
-import { connect } from 'react-redux';
 
   const styles = (theme => ({
     card: {
@@ -16,21 +15,13 @@ import { connect } from 'react-redux';
 
 export class Home extends Component {
     render() {
-        const { classes } = this.props;
-        const { temtemList } = this.props;
         return (
-            <Container maxWidth="xl">
-                
-                <TemtemList temtems={temtemList}></TemtemList>
+            <Container maxWidth="xl">               
+                <TemtemList></TemtemList>
             </Container>
         )
     }
 }
 
-const mapStateProps = (state) => {
-    return {
-        temtemList : state.temtemList.temtems
-    }
-}
-export default connect(mapStateProps)(withStyles(styles)(Home));
+export default (withStyles(styles)(Home));
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
@@ -27,7 +27,9 @@ function App() {
       <BrowserRouter>
 
         <Navbar />
-        <Home />
+        <Switch>
+          <Route exact path='' component={Home} />
+        </Switch>
 
       </BrowserRouter>
     </ThemeProvider>
