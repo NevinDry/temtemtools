@@ -4,12 +4,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar'
-import logo from '../../assets/images/logo.jpg'
 import { withStyles } from '@material-ui/core/styles';
 import Hidden from '@material-ui/core/Hidden';
+import { Link } from 'react-router-dom';
 
+import logo from '../../assets/images/logo.jpg'
 
-import './Navbar.css'
 import SignIn from '../auth/SignIn';
 import SignUp from '../auth/SignUp';
 
@@ -17,12 +17,24 @@ const styles = (theme => ({
   root: {
     flexGrow: 1
   },
-
+  logo: {
+    height: '50px',
+    borderRadius: '30px',
+    marginRight: '10px'
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
+  },
+  link:{
+    flexGrow: 1,
+    textDecoration: 'none',
+    color: 'white',
+    display: 'flex',
+    position: 'relative',
+    alignItems: 'center'
   },
   orangeAvatar: {
     margin: 10,
@@ -56,12 +68,14 @@ export class Navbar extends React.Component {
       <div className={classes.root}>
         <AppBar position="static" className={classes.bar} >
           <Toolbar>
-            <img className="logo" edge="start" alt="temtemtools" src={logo} />
-            <Hidden only="xs">
-              <Typography variant="h6" className={classes.title}>
-                TemTemTools
+            <Link to={'/'} className={classes.link}>
+              <img className={classes.logo} edge="start" alt="temtemtools" src={logo} />
+              <Hidden only="xs">
+                <Typography variant="h6" className={classes.title}>
+                  TemTemTools
               </Typography>
-            </Hidden>
+              </Hidden>
+            </Link>
             <Avatar className={classes.orangeAvatar}>N</Avatar>
             <Button color="inherit" onClick={() => this.setState({ signInOpen: true })}>Login</Button>
             <Button color="inherit" onClick={() => this.setState({ signUpOpen: true })}>Sign Up</Button>

@@ -12,6 +12,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import Loading from '../loading/Loading';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const styles = (theme => ({
     root: {
@@ -19,7 +20,11 @@ const styles = (theme => ({
         margin: 0
     },
     card: {
-        maxWidth: 345,
+        maxWidth: 345
+    },
+    link:{
+        textDecoration: 'none',
+        color: 'unset'
     },
     media: {
         height: 140,
@@ -30,40 +35,40 @@ export class TemtemList extends Component {
     render() {
         const { classes } = this.props;
         const { temtemList } = this.props;
+        console.log(this.props);
 
         if (temtemList) {
             return (
                 <Grid container className={classes.root} spacing={2}>
                     {
-                        temtemList && temtemList.map(temtem => {
+                        temtemList && temtemList.map((temtem, i) => {
                             return (
-                                <Grid item xs={12} sm={6} md={4} xl={2} >
+                                <Grid key={i} item xs={12} sm={6} md={4} xl={2} >
 
                                     <Card className={classes.card}>
-                                        <CardActionArea>
-                                            <CardMedia
-                                                className={classes.media}
-                                                image={"https://firebasestorage.googleapis.com/v0/b/temtemtools.appspot.com/o/temtems%2F" + temtem.name + ".jpg?alt=media"}
-                                                title="Contemplative Reptile"
-                                            />
-                                            <CardContent>
-                                                <Typography gutterBottom variant="h5" component="h2">
-                                                    {temtem.name}
-                                                </Typography>
-                                                <Typography variant="body2" color="textSecondary" component="p">
-{/* 
-                                                    {
-                                                        temtem.types.map(type => {
-                                                            type.get().then((typeObj) => {
-                                                                console.log(typeObj.data().name);
+                                        <CardActionArea >
+                                            <Link to={'/temtem/' + temtem.id} className={classes.link}>
+                                                <CardMedia
+                                                    className={classes.media}
+                                                    image={"https://firebasestorage.googleapis.com/v0/b/temtemtools.appspot.com/o/temtems%2F" + temtem.name + ".jpg?alt=media"}
+                                                    title="Contemplative Reptile"
+                                                />
+                                                <CardContent>
+                                                    <Typography gutterBottom variant="h5" component="h2">
+                                                        {temtem.name}
+                                                    </Typography>
+                                                    <Typography variant="body2" color="textSecondary" component="p">
+                                                        {
+                                                            temtem.types.map(type => {
                                                                 return (
-                                                                    "DFGSDFG"
+                                                                    type.name + " "
                                                                 );
                                                             })
-                                                        })
-                                                    } */}
-                                                </Typography>
-                                            </CardContent>
+                                                        }
+                                                    </Typography>
+                                                </CardContent>
+                                            </Link>
+
                                         </CardActionArea>
                                         <CardActions>
                                             <Button size="small" color="primary">
@@ -90,7 +95,6 @@ export class TemtemList extends Component {
 }
 
 const mapStateProps = (state) => {
-    console.log(state);
     return {
         temtemList: state.firestore.ordered.temtems
     }
