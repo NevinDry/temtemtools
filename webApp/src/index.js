@@ -7,7 +7,7 @@ import rootReducer from './store/reducers/rootReducer';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createFirestoreInstance, getFirestore, reduxFirestore } from 'redux-firestore';
-import { ReactReduxFirebaseProvider, getFirebase } from "react-redux-firebase";
+import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 import firebaseConfig from './firebaseConfig'
 import App from './components/app/App';
 import logger from 'redux-logger';

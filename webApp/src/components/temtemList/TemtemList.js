@@ -33,9 +33,7 @@ const styles = (theme => ({
 
 export class TemtemList extends Component {
     render() {
-        const { classes } = this.props;
-        const { temtemList } = this.props;
-        console.log(this.props);
+        const { classes, temtemList} = this.props;
 
         if (temtemList) {
             return (
