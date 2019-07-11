@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Typography from '@material-ui/core/Typography';
-// import Grid from '@material-ui/core/Typography';
-// import CardContent from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import CardContent from '@material-ui/core/CardContent';
 
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -9,12 +9,14 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+
 import Loading from '../loading/Loading';
 import typeColors from '../../utils/typesColors'
 
 import { getTemtem } from '../../store/actions/temtemActions';
 
 import NextPrevTemtem from './NextPrevTemtem';
+import TemtemBaseStats from './TemtemBaseStats';
 
 const styles = (theme => (
     {
@@ -30,6 +32,15 @@ const styles = (theme => (
         },
         media: {
             height: 140,
+        },
+        statsContainer: {
+            marginTop: theme.spacing(2)
+        },
+        statItem:{
+            marginTop: theme.spacing(1)
+        },
+        statBar:{
+            height: "21px"
         }
     }));
 
@@ -61,16 +72,18 @@ export class TemtemInfo extends Component {
 
                     <NextPrevTemtem prev={temtem.prevTemtem} next={temtem.nextTemtem}></NextPrevTemtem>
 
-                    {/* <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6} >
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} sm={8} >
                             <CardContent>
 
                             </CardContent>
                         </Grid>
-                        <Grid item xs={12} sm={6} >
+                        <Grid item xs={12} sm={4} className={classes.statsContainer}>
+
+                            <TemtemBaseStats baseStats={temtem.baseStats} />
 
                         </Grid>
-                    </Grid> */}
+                    </Grid>
 
                 </Container>
             )
